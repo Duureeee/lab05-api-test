@@ -25,13 +25,13 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/students/B231234567",
+              "raw": "{{baseUrl}}/students/B232270032",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "students",
-                "B231234567"
+                "B232270032"
               ]
             }
           },
@@ -704,7 +704,7 @@
   "variable": [
     {
       "key": "baseUrl",
-      "value": ""
+      "value": "http://localhost:3000"
     }
   ]
 }
