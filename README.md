@@ -44,6 +44,20 @@
 | 7 | Bad JSON | JSON синтакс зориуд буруу | 400 | ERROR_BAD_JSON |
 | 8 | No Prerequisites | prerequisites=[] хичээл | 201 | OK |
 
+## Тест ажиллуулах
+
+API серверийг ажиллуулах:
+
+```bash
+node server.js
+```
+
+PASS collection-ийг Newman-аар ажиллуулах:
+
+```bash
+newman run lab05-collection.json --env-var "baseUrl=http://localhost:3000"
+```
+
 ## PASS тест
 
 Зөв oracle-уудтай `lab05-collection.json` collection-ийг Newman-аар ажиллуулсан.
