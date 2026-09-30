@@ -9,6 +9,7 @@
 ## Ашигласан орчин
 
 - Node.js: v18.19.1
+- npm: 9.2.0
 - Newman: 6.2.2
 - API: http://localhost:3000
 - Тестийн хэрэгсэл: Postman, Newman
