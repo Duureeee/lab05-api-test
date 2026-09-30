@@ -1,0 +1,101 @@
+newman
+
+Lab05 API Test
+
+❏ Test 01 - Happy Path
+↳ Setup Student
+  PUT http://localhost:3000/students/B231234567 [200 OK, 178B, 17ms]
+
+↳ Setup Course
+  PUT http://localhost:3000/courses/CS313 [200 OK, 178B, 20ms]
+
+↳ Register Student
+  POST http://localhost:3000/registrations [201 Created, 203B, 2ms]
+  ✓  Status code is 201
+  ✓  Result is OK
+
+❏ Test 02 - No Student
+↳ Setup Course
+  PUT http://localhost:3000/courses/CS313 [200 OK, 178B, 3ms]
+
+↳ Register - No Student
+  POST http://localhost:3000/registrations [200 OK, 192B, 2ms]
+  ✓  Status code is 200
+  ✓  Result is ERROR_NO_STUDENT
+
+❏ Test 03 - Inactive Student
+↳ Setup Student
+  PUT http://localhost:3000/students/B232270032 [200 OK, 178B, 2ms]
+
+↳ Setup Course
+  PUT http://localhost:3000/courses/CS313 [200 OK, 178B, 2ms]
+
+↳ Register - Inactive Student
+  POST http://localhost:3000/registrations [200 OK, 198B, 2ms]
+  ✓  Status code is 200
+  ✓  Result is ERROR_INACTIVE_STUDENT
+
+❏ Test 04 - No Course
+↳ Setup Student
+  PUT http://localhost:3000/students/B232270032 [200 OK, 178B, 4ms]
+
+↳ Register - No Course request
+  POST http://localhost:3000/registrations [200 OK, 191B, 2ms]
+  ✓  Status code is 200
+  ✓  Result is ERROR_NO_COURSE
+
+❏ Test 05 - Prerequisites Missing
+↳ Setup Student
+  PUT http://localhost:3000/students/B232270032 [200 OK, 178B, 2ms]
+
+↳ Setup Course
+  PUT http://localhost:3000/courses/CS313 [200 OK, 178B, 2ms]
+
+↳ Register - Missing Prerequisites
+  POST http://localhost:3000/registrations [200 OK, 215B, 2ms]
+  ✓  Status code is 200
+  ✓  Result is ERROR_PREREQUISITES
+
+❏ Test 06 - Bad Request
+↳ Register - Missing CourseID
+  POST http://localhost:3000/registrations [400 Bad Request, 202B, 3ms]
+  ✓  Status code is 400
+  ✓  Result is ERROR_BAD_REQUEST
+
+❏ Test 07 - Bad JSON
+↳ Register - Bad JSON
+  POST http://localhost:3000/registrations [400 Bad Request, 199B, 2ms]
+  ✓  Status code is 400
+  ✓  Result is ERROR_BAD_JSON
+
+❏ Test 08 - No Prerequisites
+↳ Setup Student
+  PUT http://localhost:3000/students/B232270032 [200 OK, 178B, 2ms]
+
+↳ Setup Course
+  PUT http://localhost:3000/courses/CS101 [200 OK, 178B, 1ms]
+
+↳ Register - No Prerequisites
+  POST http://localhost:3000/registrations [201 Created, 203B, 1ms]
+  ✓  Status code is 201
+  ✓  Result is OK
+
+┌─────────────────────────┬─────────────────┬─────────────────┐
+│                         │        executed │          failed │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              iterations │               1 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│                requests │              18 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│            test-scripts │              26 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│      prerequest-scripts │              18 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              assertions │              16 │               0 │
+├─────────────────────────┴─────────────────┴─────────────────┤
+│ total run duration: 412ms                                   │
+├─────────────────────────────────────────────────────────────┤
+│ total data received: 421B (approx)                          │
+├─────────────────────────────────────────────────────────────┤
+│ average response time: 3ms [min: 1ms, max: 20ms, s.d.: 5ms] │
+└─────────────────────────────────────────────────────────────┘
