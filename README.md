@@ -78,7 +78,7 @@ PASS run үед бүх үндсэн тест амжилттай ажилласа
 Үр дүн:
 
 - Requests: 18, failed: 0
-- Assertions: 15 passed, 1 failed
+- Assertions: 15 executed, 1 failed (14 passed)
 - Алдаа: expected status code 200 but got 201
 - Exit code: 1
 - Evidence: `results/newman-fail.txt`
