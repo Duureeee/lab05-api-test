@@ -4,7 +4,7 @@ Lab05 API Test
 
 ❏ Test 01 - Happy Path
 ↳ Setup Student
-  PUT http://localhost:3000/students/B231234567 [errored]
+  PUT http://localhost:3000/students/B232270032 [errored]
      connect ECONNREFUSED 127.0.0.1:3000
 
 ↳ Setup Course
@@ -111,7 +111,7 @@ Lab05 API Test
 ├─────────────────────────┼──────────┼──────────┤
 │              assertions │       16 │       16 │
 ├─────────────────────────┴──────────┴──────────┤
-│ total run duration: 374ms                     │
+│ total run duration: 414ms                     │
 ├───────────────────────────────────────────────┤
 │ total data received: 0B (approx)              │
 └───────────────────────────────────────────────┘

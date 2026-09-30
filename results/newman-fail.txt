@@ -4,13 +4,13 @@ Lab05 API Test Copy
 
 ❏ Test 01 - Happy Path
 ↳ Setup Student
-  PUT http://localhost:3000/students/B231234567 [200 OK, 178B, 15ms]
+  PUT http://localhost:3000/students/B231234567 [200 OK, 178B, 16ms]
 
 ↳ Setup Course
   PUT http://localhost:3000/courses/CS313 [200 OK, 178B, 3ms]
 
 ↳ Register Student
-  POST http://localhost:3000/registrations [201 Created, 203B, 2ms]
+  POST http://localhost:3000/registrations [201 Created, 202B, 3ms]
   1. Status code is 200 - intentional fail
 
 ❏ Test 02 - No Student
@@ -36,16 +36,16 @@ Lab05 API Test Copy
 
 ❏ Test 04 - No Course
 ↳ Setup Student
-  PUT http://localhost:3000/students/B232270032 [200 OK, 178B, 3ms]
+  PUT http://localhost:3000/students/B232270032 [200 OK, 178B, 2ms]
 
 ↳ Register - No Course request
-  POST http://localhost:3000/registrations [200 OK, 191B, 3ms]
+  POST http://localhost:3000/registrations [200 OK, 191B, 2ms]
   ✓  Status code is 200
   ✓  Result is ERROR_NO_COURSE
 
 ❏ Test 05 - Prerequisites Missing
 ↳ Setup Student
-  PUT http://localhost:3000/students/B232270032 [200 OK, 178B, 3ms]
+  PUT http://localhost:3000/students/B232270032 [200 OK, 178B, 2ms]
 
 ↳ Setup Course
   PUT http://localhost:3000/courses/CS313 [200 OK, 178B, 2ms]
@@ -57,7 +57,7 @@ Lab05 API Test Copy
 
 ❏ Test 06 - Bad Request
 ↳ Register - Missing CourseID
-  POST http://localhost:3000/registrations [400 Bad Request, 202B, 1ms]
+  POST http://localhost:3000/registrations [400 Bad Request, 202B, 2ms]
   ✓  Status code is 400
   ✓  Result is ERROR_BAD_REQUEST
 
@@ -69,13 +69,13 @@ Lab05 API Test Copy
 
 ❏ Test 08 - No Prerequisites
 ↳ Setup Student
-  PUT http://localhost:3000/students/B232270032 [200 OK, 178B, 2ms]
+  PUT http://localhost:3000/students/B232270032 [200 OK, 178B, 3ms]
 
 ↳ Setup Course
   PUT http://localhost:3000/courses/CS101 [200 OK, 178B, 2ms]
 
 ↳ Register - No Prerequisites
-  POST http://localhost:3000/registrations [201 Created, 203B, 1ms]
+  POST http://localhost:3000/registrations [201 Created, 202B, 2ms]
   ✓  Status code is 201
   ✓  Result is OK
 
@@ -92,11 +92,11 @@ Lab05 API Test Copy
 ├─────────────────────────┼─────────────────┼─────────────────┤
 │              assertions │              15 │               1 │
 ├─────────────────────────┴─────────────────┴─────────────────┤
-│ total run duration: 402ms                                   │
+│ total run duration: 393ms                                   │
 ├─────────────────────────────────────────────────────────────┤
-│ total data received: 421B (approx)                          │
+│ total data received: 419B (approx)                          │
 ├─────────────────────────────────────────────────────────────┤
-│ average response time: 2ms [min: 1ms, max: 15ms, s.d.: 2ms] │
+│ average response time: 3ms [min: 2ms, max: 16ms, s.d.: 3ms] │
 └─────────────────────────────────────────────────────────────┘
 
 [31m  # [39m[31m failure        [39m[31m detail                                                [39m
