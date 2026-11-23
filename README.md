@@ -89,7 +89,7 @@ PASS run үед үндсэн болон давхар алдааны бүх те�
 Үр дүн:
 
 - Requests: 21, failed: 0
-- Assertions: 15 executed, 1 failed (14 passed)
+- Assertions: 20 executed, 1 failed (19 passed)
 - Алдаа: expected status code 200 but got 201
 - Exit code: 1
 - Evidence: `results/newman-fail.txt`
@@ -110,7 +110,7 @@ API серверийг Ctrl+C ашиглан зогсоож Newman collection-и
 
 ## Дүгнэлт
 
-Энэ лабораторийн ажлаар Postman болон Newman ашиглан API системийн тест хийж сурлаа. Эхлээд оюутан болон хичээлийн өгөгдлийг PUT хүсэлтээр бэлтгэж, бүртгэлийн POST хүсэлтийг тестэлсэн. Happy Path тестээр зөв нөхцөлд API 201 статус болон OK үр дүн буцааж байгааг шалгасан. Мөн байхгүй оюутан, идэвхгүй оюутан, байхгүй хичээл болон prerequisite хангаагүй нөхцөлүүдийг тус тус тестэлсэн. Missing field болон буруу JSON ашиглан 400 статус буцаах boundary нөхцөлүүдийг шалгасан. Тест бүрд status code болон result утгыг шалгах oracle ашигласан. PASS run үед 16 assertion бүгд амжилттай болж exit code 0 гарсан. FAIL run үед нэг oracle-ийг зориуд буруу тохируулснаар Newman assertion failure илрүүлж exit code 1 буцаасан. DOWN run үед серверийг унтраахад ECONNREFUSED connection error гарч, interface error болон oracle failure хоёрын ялгааг ажигласан. Ингэснээр API тестийг автоматжуулж, Newman-ийн үр дүн болон exit code ашиглан тестийн амжилт, алдааг тодорхойлох дадлага хийлээ.
+Энэ лабораторийн ажлаар Postman болон Newman ашиглан API системийн тест хийж сурлаа. Эхлээд оюутан болон хичээлийн өгөгдлийг PUT хүсэлтээр бэлтгэж, бүртгэлийн POST хүсэлтийг тестэлсэн. Happy Path тестээр зөв нөхцөлд API 201 статус болон OK үр дүн буцааж байгааг шалгасан. Мөн байхгүй оюутан, идэвхгүй оюутан, байхгүй хичээл болон prerequisite хангаагүй нөхцөлүүдийг тус тус тестэлсэн. Missing field болон буруу JSON ашиглан 400 статус буцаах boundary нөхцөлүүдийг шалгасан. Тест бүрд status code болон result утгыг шалгах oracle ашигласан. PASS run үед 20 assertion бүгд амжилттай болж exit code 0 гарсан. FAIL run үед нэг oracle-ийг зориуд буруу тохируулснаар Newman assertion failure илрүүлж exit code 1 буцаасан. DOWN run үед серверийг унтраахад ECONNREFUSED connection error гарч, interface error болон oracle failure хоёрын ялгааг ажигласан. Ингэснээр API тестийг автоматжуулж, Newman-ийн үр дүн болон exit code ашиглан тестийн амжилт, алдааг тодорхойлох дадлага хийлээ.
 
 ### Давхар алдааны тестийн дүгнэлт
 
