@@ -2,15 +2,24 @@
 
 ## Оюутны мэдээлэл
 
+- Оюутны нэр: Ц.Алтжин
 - Оюутны код: B232270032
 - Лабораторийн ажил: Lab05
 - Сэдэв: API систем тест - Postman + Newman
 
 ## Ашигласан орчин
 
-- Node.js: v18.19.1
+Node.js хувилбар:
+
+    $ node -v
+    v18.19.1
+
+Newman хувилбар:
+
+    $ newman -v
+    6.2.2
+
 - npm: 9.2.0
-- Newman: 6.2.2
 - API: http://localhost:3000
 - Тестийн хэрэгсэл: Postman, Newman
 - Үйлдлийн орчин: WSL Ubuntu
@@ -43,6 +52,8 @@
 | 6 | Bad Request | courseID талбар байхгүй | 400 | ERROR_BAD_REQUEST |
 | 7 | Bad JSON | JSON синтакс зориуд буруу | 400 | ERROR_BAD_JSON |
 | 8 | No Prerequisites | prerequisites=[] хичээл | 201 | OK |
+| 9 | Double Error: Inactive Student + No Course | Оюутан inactive бөгөөд courseID системд байхгүй | 200 | ERROR_INACTIVE_STUDENT |
+| 10 | Double Error: No Student + No Course | studentID болон courseID хоёулаа системд байхгүй | 200 | ERROR_NO_STUDENT |
 
 ## Тест ажиллуулах
 
@@ -64,12 +75,12 @@ newman run lab05-collection.json --env-var "baseUrl=http://localhost:3000"
 
 Үр дүн:
 
-- Requests: 18, failed: 0
-- Assertions: 16, failed: 0
+- Requests: 21, failed: 0
+- Assertions: 20, failed: 0
 - Exit code: 0
 - Evidence: `results/newman-pass.txt`
 
-PASS run үед бүх үндсэн тест амжилттай ажилласан.
+PASS run үед үндсэн болон давхар алдааны бүх тест амжилттай ажилласан.
 
 ## FAIL тест
 
@@ -77,7 +88,7 @@ PASS run үед бүх үндсэн тест амжилттай ажилласа
 
 Үр дүн:
 
-- Requests: 18, failed: 0
+- Requests: 21, failed: 0
 - Assertions: 15 executed, 1 failed (14 passed)
 - Алдаа: expected status code 200 but got 201
 - Exit code: 1
@@ -100,3 +111,21 @@ API серверийг Ctrl+C ашиглан зогсоож Newman collection-и
 ## Дүгнэлт
 
 Энэ лабораторийн ажлаар Postman болон Newman ашиглан API системийн тест хийж сурлаа. Эхлээд оюутан болон хичээлийн өгөгдлийг PUT хүсэлтээр бэлтгэж, бүртгэлийн POST хүсэлтийг тестэлсэн. Happy Path тестээр зөв нөхцөлд API 201 статус болон OK үр дүн буцааж байгааг шалгасан. Мөн байхгүй оюутан, идэвхгүй оюутан, байхгүй хичээл болон prerequisite хангаагүй нөхцөлүүдийг тус тус тестэлсэн. Missing field болон буруу JSON ашиглан 400 статус буцаах boundary нөхцөлүүдийг шалгасан. Тест бүрд status code болон result утгыг шалгах oracle ашигласан. PASS run үед 16 assertion бүгд амжилттай болж exit code 0 гарсан. FAIL run үед нэг oracle-ийг зориуд буруу тохируулснаар Newman assertion failure илрүүлж exit code 1 буцаасан. DOWN run үед серверийг унтраахад ECONNREFUSED connection error гарч, interface error болон oracle failure хоёрын ялгааг ажигласан. Ингэснээр API тестийг автоматжуулж, Newman-ийн үр дүн болон exit code ашиглан тестийн амжилт, алдааг тодорхойлох дадлага хийлээ.
+
+### Давхар алдааны тестийн дүгнэлт
+
+Test 09: Оюутан идэвхгүй бөгөөд хичээл байхгүй үед API нь
+HTTP 200, ERROR_INACTIVE_STUDENT буцаана. Учир нь сервер
+оюутны төлөвийг хичээл байгаа эсэхээс түрүүлж шалгадаг.
+
+Test 10: Оюутан болон хичээл хоёулаа байхгүй үед API нь
+HTTP 200, ERROR_NO_STUDENT буцаана. Учир нь сервер
+эхлээд оюутан бүртгэлтэй эсэхийг шалгадаг.
+
+Боломжгүй хослол: Байхгүй хичээлийн prerequisite шаардлагыг
+шалгах боломжгүй. Учир нь хичээл олдохгүй үед prerequisite
+шалгах шатанд хүрэхгүй. Мөн courseID талбар дутуу үед
+ERROR_BAD_REQUEST буцаадаг тул хичээлийн төлөвийг шалгахгүй.
+
+Эдгээр тестээр олон алдаа зэрэг үүсэхэд сервер зөвхөн
+эхэлж илэрсэн алдааг буцаадаг болохыг шалгана.
