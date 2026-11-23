@@ -675,6 +675,131 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Test 09 - Double Error - Inactive Student + No Course",
+      "item": [
+        {
+          "name": "Setup Inactive Student",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"status\": \"inactive\",\r\n  \"coursesTaken\": []\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/students/B232270032",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "students",
+                "B232270032"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register - Inactive Student + No Course",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Result is ERROR_INACTIVE_STUDENT\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.result).to.eql(\"ERROR_INACTIVE_STUDENT\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"studentID\": \"B232270032\",\r\n  \"courseID\": \"NO_COURSE\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/registrations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "registrations"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Test 10 - Double Error - No Student + No Course",
+      "item": [
+        {
+          "name": "Register - No Student + No Course",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Result is ERROR_NO_STUDENT\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.result).to.eql(\"ERROR_NO_STUDENT\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"studentID\": \"NO_STUDENT\",\r\n  \"courseID\": \"NO_COURSE\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/registrations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "registrations"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "event": [
